@@ -1,6 +1,6 @@
 {
   "personal": {
-    "name": "Huney Oliveira",
+    "name": "Huney",
     "title": {
       "pt": "Desenvolvedor e Analista de Dados",
       "en": "Developer and Data Analyst"
@@ -14,15 +14,15 @@
       "en": "Back-end developer with experience in freelance and personal projects. Currently, I'm in the process of developing and transitioning my career to Data Science, combining my development background with data analysis and interpretation."
     },
     "location": {
-      "pt": "São Paulo, SP - Brasil",
-      "en": "São Paulo, SP - Brazil"
+      "pt": "Aracaju, SE - Brasil",
+      "en": "Aracaju, SE - Brazil"
     },
-    "email": "joao.silva@email.com",
-    "phone": "+55 (11) 99999-9999",
+    "email": "contact@devhuney.me",
+    "phone": "+55 (79) 99877-9463",
     "social": {
-      "github": "https://github.com/joaosilva",
-      "linkedin": "https://linkedin.com/in/joaosilva",
-      "twitter": "https://twitter.com/joaosilva"
+      "github": "https://github.com/DevHuney",
+      "linkedin": "https://linkedin.com/in/huneyoliv",
+      "twitter": "https://twitter.com/huneyoliv"
     }
   },
   "about": {
@@ -64,19 +64,19 @@
     ]
   },
   "skills": {
-    "languages": ["JavaScript", "TypeScript", "Python", "Java", "Go"],
-    "frameworks": ["Node.js", "Express.js", "NestJS", "FastAPI", "Spring Boot"],
-    "databases": ["PostgreSQL", "MongoDB", "Redis", "MySQL", "Elasticsearch"],
-    "tools": ["Docker", "Kubernetes", "AWS", "Git", "Jenkins"]
+    "languages": ["JavaScript", "TypeScript", "Python"],
+    "frameworks": ["Node.js", "FastAPI"],
+    "databases": ["PostgreSQL", "MongoDB", "Redis", "MySQL"],
+    "tools": ["Docker", "AWS", "Git"]
   },
   "projects": [
     {
-      "title": "Sistema de Microsserviços E-commerce",
+      "title": "TG Cloner",
       "description": {
-        "pt": "Arquitetura completa de microsserviços para plataforma de e-commerce com mais de 1M de usuários ativos.",
-        "en": "Complete microservices architecture for e-commerce platform with over 1M active users."
+        "pt": "Aplicação GUI feita para o envio e cópia de grupos do Telegram.",
+        "en": "GUI application made for sending and copying Telegram groups."
       },
-      "technologies": ["Node.js", "Docker", "Kubernetes", "PostgreSQL", "Redis", "RabbitMQ"],
+      "technologies": ["Python", "FastAPI"],
       "gallery": [
         "/projects/ecommerce/architecture.png",
         "/projects/ecommerce/dashboard.png",
@@ -84,129 +84,38 @@
       ],
       "github": "https://github.com/joaosilva/ecommerce-microservices",
       "demo": "https://demo-ecommerce.com"
-    },
-    {
-      "title": "API de Chat em Tempo Real",
-      "description": {
-        "pt": "Sistema de mensagens instantâneas com WebSockets, suportando salas, notificações push e histórico.",
-        "en": "Real-time messaging system with WebSockets, supporting rooms, push notifications and history."
-      },
-      "technologies": ["Node.js", "Socket.io", "MongoDB", "Redis", "JWT"],
-      "gallery": ["/projects/chat/interface.png", "/projects/chat/mobile.png"],
-      "github": "https://github.com/joaosilva/realtime-chat-api"
-    },
-    {
-      "title": "Dashboard de Analytics",
-      "description": {
-        "pt": "Plataforma de análise de dados em tempo real com processamento de grandes volumes de informações.",
-        "en": "Real-time data analytics platform with big data processing capabilities."
-      },
-      "technologies": ["Python", "FastAPI", "Elasticsearch", "Kafka", "Docker"],
-      "gallery": [
-        "/projects/analytics/dashboard.png",
-        "/projects/analytics/charts.png",
-        "/projects/analytics/reports.png"
-      ],
-      "github": "https://github.com/joaosilva/analytics-dashboard"
-    },
-    {
-      "title": "Sistema de Autenticação OAuth2",
-      "description": {
-        "pt": "Servidor de autenticação completo com OAuth2, JWT, 2FA e integração com provedores externos.",
-        "en": "Complete authentication server with OAuth2, JWT, 2FA and external provider integration."
-      },
-      "technologies": ["Node.js", "PostgreSQL", "Redis", "JWT", "Passport.js"],
-      "gallery": ["/projects/auth/login.png", "/projects/auth/dashboard.png"],
-      "github": "https://github.com/joaosilva/oauth2-server"
-    },
-    {
-      "title": "API de Upload de Arquivos",
-      "description": {
-        "pt": "Serviço robusto para upload, processamento e armazenamento de arquivos com suporte a múltiplos formatos.",
-        "en": "Robust service for file upload, processing and storage with multiple format support."
-      },
-      "technologies": ["Node.js", "AWS S3", "Sharp", "FFmpeg", "Bull Queue"],
-      "gallery": ["/projects/upload/interface.png", "/projects/upload/processing.png"],
-      "github": "https://github.com/joaosilva/file-upload-api"
-    },
-    {
-      "title": "Sistema de Monitoramento",
-      "description": {
-        "pt": "Plataforma completa de monitoramento de aplicações com métricas, logs e alertas em tempo real.",
-        "en": "Complete application monitoring platform with real-time metrics, logs and alerts."
-      },
-      "technologies": ["Go", "Prometheus", "Grafana", "InfluxDB", "Docker"],
-      "gallery": [
-        "/projects/monitoring/metrics.png",
-        "/projects/monitoring/alerts.png",
-        "/projects/monitoring/logs.png"
-      ],
-      "github": "https://github.com/joaosilva/monitoring-system"
-    }
-  ],
+    }],
   "education": [
     {
       "degree": {
-        "pt": "Bacharelado em Ciência da Computação",
-        "en": "Bachelor's Degree in Computer Science"
+        "pt": "Bacharelado em Sistemas de Informação",
+        "en": "Bachelor's Degree in Information Systems"
       },
-      "institution": "Universidade de São Paulo (USP)",
-      "period": "2018 - 2022",
+      "institution": "Universidade Tiradentes (UNIT)",
+      "period": "2025 - 2029",
       "description": {
         "pt": "Formação sólida em algoritmos, estruturas de dados, engenharia de software e sistemas distribuídos.",
         "en": "Solid foundation in algorithms, data structures, software engineering and distributed systems."
       }
-    },
-    {
-      "degree": {
-        "pt": "Especialização em Arquitetura de Software",
-        "en": "Software Architecture Specialization"
-      },
-      "institution": "FIAP",
-      "period": "2023 - 2024",
-      "description": {
-        "pt": "Foco em padrões arquiteturais, microsserviços, DevOps e práticas de desenvolvimento ágil.",
-        "en": "Focus on architectural patterns, microservices, DevOps and agile development practices."
-      }
-    }
-  ],
-  "certifications": [
-    {
-      "name": "AWS Certified Solutions Architect",
-      "issuer": "Amazon Web Services",
-      "date": "2023",
-      "credentialId": "AWS-SAA-123456"
-    },
-    {
-      "name": "Certified Kubernetes Administrator (CKA)",
-      "issuer": "Cloud Native Computing Foundation",
-      "date": "2023",
-      "credentialId": "CKA-789012"
-    },
-    {
-      "name": "MongoDB Certified Developer",
-      "issuer": "MongoDB Inc.",
-      "date": "2022",
-      "credentialId": "MDB-DEV-345678"
     }
   ],
   "contact": [
     {
       "type": "email",
       "label": "Email",
-      "value": "joao.silva@email.com",
-      "link": "mailto:joao.silva@email.com"
+      "value": "contact@devhuney.me",
+      "link": "mailto:contact@devhuney.me"
     },
     {
       "type": "phone",
       "label": "Telefone",
-      "value": "+55 (11) 99999-9999",
-      "link": "tel:+5511999999999"
+      "value": "+55 (79) 9 9877-9463",
+      "link": "tel:+5579998779463"
     },
     {
       "type": "location",
       "label": "Localização",
-      "value": "São Paulo, SP - Brasil",
+      "value": "Aracaju, SE - Brasil",
       "link": null
     }
   ]
