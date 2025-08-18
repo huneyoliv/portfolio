@@ -6,11 +6,14 @@ import { Menu, X } from "lucide-react"
 import { usePortfolioData } from "../hooks/usePortfolioData"
 import { ThemeToggle } from "./ThemeToggle"
 import { LanguageToggle } from "./LanguageToggle"
+import Image from "next/image"
+import { useApp } from "@/contexts/AppContext"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const { getLocalizedText } = usePortfolioData()
+  const { effectiveTheme } = useApp()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,8 +49,14 @@ export function Header() {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <button onClick={() => scrollToSection("inicio")} className="text-xl font-medium">
-            {getLocalizedText({ pt: "Portfólio", en: "Portfolio" })}
+          <button onClick={() => scrollToSection("inicio")} className="flex items-center gap-2">
+            <Image
+              src={effectiveTheme === "dark" ? "/logos/logo_dark_mode.png" : "/logos/logo_light_mode.png"}
+              alt="Huney Oliveira"
+              width={100}
+              height={22}
+              priority
+            />
           </button>
 
           {/* Desktop Navigation */}

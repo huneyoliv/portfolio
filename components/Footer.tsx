@@ -36,7 +36,7 @@ export function Footer() {
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
               <button onClick={scrollToTop} className="text-xl font-medium mb-4 hover:text-primary transition-colors">
-                Portfólio
+                Huney Oliveira
               </button>
               <p className="text-muted-foreground">
                 Desenvolvedor Backend especializado em criar soluções robustas e escaláveis para impactar positivamente
@@ -101,8 +101,7 @@ export function Footer() {
 
           <div className="pt-8 border-t border-border text-center">
             <p className="text-muted-foreground flex items-center justify-center gap-2">
-              © {currentYear} Portfólio. Feito com
-              <Heart className="h-4 w-4 text-red-500 fill-current" />e código
+              © {currentYear} Huney Oliveira. Feito ☕ e muito código
             </p>
           </div>
         </div>

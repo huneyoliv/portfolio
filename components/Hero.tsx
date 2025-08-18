@@ -33,7 +33,11 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-4">
-            <Button size="lg" onClick={() => scrollToSection("projetos")} className="w-full sm:w-auto min-w-[160px]">
+            <Button
+              size="lg"
+              onClick={() => scrollToSection("projetos")}
+              className="w-full sm:w-auto min-w-[160px] text-white"
+            >
               {getLocalizedText({ pt: "Ver Projetos", en: "View Projects" })}
             </Button>
             <Button
