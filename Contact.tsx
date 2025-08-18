@@ -18,7 +18,7 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Aqui você integraria com um serviço de email como EmailJS ou um backend
+
     toast.success(t('messageSent'));
     setFormData({ name: '', email: '', message: '' });
   };

@@ -24,6 +24,15 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Evita rolagem do body quando o menu mobile está aberto
+  useEffect(() => {
+    const original = document.body.style.overflow
+    document.body.style.overflow = isMenuOpen ? "hidden" : original
+    return () => {
+      document.body.style.overflow = original
+    }
+  }, [isMenuOpen])
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -85,25 +94,27 @@ export function Header() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation Overlay */}
         {isMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border">
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="text-left text-foreground/80 hover:text-foreground transition-colors"
-                >
-                  {getLocalizedText(item.label)}
-                </button>
-              ))}
-              <div className="flex items-center gap-2 pt-4 border-t border-border sm:hidden">
-                <ThemeToggle />
-                <LanguageToggle />
+          <div className="md:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-background/95 backdrop-blur-sm border-t border-border">
+            <nav className="py-6 h-full overflow-y-auto">
+              <div className="flex flex-col space-y-4 px-4">
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className="text-left text-foreground/90 hover:text-foreground transition-colors text-lg py-2"
+                  >
+                    {getLocalizedText(item.label)}
+                  </button>
+                ))}
+                <div className="flex items-center gap-2 pt-4 border-t border-border sm:hidden">
+                  <ThemeToggle />
+                  <LanguageToggle />
+                </div>
               </div>
-            </div>
-          </nav>
+            </nav>
+          </div>
         )}
       </div>
     </header>

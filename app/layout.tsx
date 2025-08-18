@@ -6,7 +6,7 @@ import { AppProvider } from "@/contexts/AppContext"
 export const metadata: Metadata = {
   title: "Huney Oliveira",
   description: "Desenvolvedor Backend especializado em Node.js e arquiteturas escaláveis",
-  generator: "v0.app",
+
   icons: {
     icon: [
       { url: "/logos/logo_light_mode.png", media: "(prefers-color-scheme: light)", sizes: "96x96" },
