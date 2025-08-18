@@ -78,12 +78,9 @@
       },
       "technologies": ["Python", "FastAPI"],
       "gallery": [
-        "/projects/ecommerce/architecture.png",
-        "/projects/ecommerce/dashboard.png",
-        "/projects/ecommerce/api.png"
+        "/projects/tgcloner/source_channel.jpeg"
       ],
-      "github": "https://github.com/joaosilva/ecommerce-microservices",
-      "demo": "https://demo-ecommerce.com"
+      "github": "https://github.com/DevHuney/tg-cloner"
     }],
   "education": [
     {
