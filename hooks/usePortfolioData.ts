@@ -9,7 +9,8 @@ export function usePortfolioData() {
     return textObj[language] || textObj.pt
   }
 
-  const getLocalizedArray = <T extends { [key: string]: any }>(array: T[], localizedFields: string[]): T[] => {
+  const getLocalizedArray = <T extends { [key: string]: any }>(array: T[] | undefined | null, localizedFields: string[]): T[] => {
+    if (!Array.isArray(array)) return []
     return array.map((item) => {
       const localizedItem = { ...item }
       localizedFields.forEach((field) => {
@@ -31,12 +32,12 @@ export function usePortfolioData() {
     },
     about: {
       story: getLocalizedText(portfolioConfig.about.story),
-      highlights: getLocalizedArray(portfolioConfig.about.highlights, ["title", "description"]),
+      highlights: getLocalizedArray(portfolioConfig.about?.highlights, ["title", "description"]),
     },
     skills: portfolioConfig.skills,
     projects: getLocalizedArray(portfolioConfig.projects, ["description"]),
     education: getLocalizedArray(portfolioConfig.education, ["degree", "description"]),
-    certifications: portfolioConfig.certifications,
+    certifications: Array.isArray(portfolioConfig.certifications) ? portfolioConfig.certifications : [],
     getLocalizedText,
   }
 }
