@@ -1,0 +1,213 @@
+{
+  "personal": {
+    "name": "Huney Oliveira",
+    "title": {
+      "pt": "Desenvolvedor e Analista de Dados",
+      "en": "Developer and Data Analyst"
+    },
+    "subtitle": {
+      "pt": "Especialista em FastAPI, Pandas, Node.js, SQL e arquitetura limpa.",
+      "en": "Expert in FastAPI, Pandas, Node.js, SQL and clean architecture."
+    },
+    "description": {
+      "pt": "Desenvolvedor Back-End com experiência em projetos freelancers e pessoais. Atualmente, estou em processo de aperfeiçoamento e transição de carreira para a área de Ciência de Dados, unindo minha base em desenvolvimento à análise e interpretação de dados.",
+      "en": "Back-end developer with experience in freelance and personal projects. Currently, I'm in the process of developing and transitioning my career to Data Science, combining my development background with data analysis and interpretation."
+    },
+    "location": {
+      "pt": "São Paulo, SP - Brasil",
+      "en": "São Paulo, SP - Brazil"
+    },
+    "email": "joao.silva@email.com",
+    "phone": "+55 (11) 99999-9999",
+    "social": {
+      "github": "https://github.com/joaosilva",
+      "linkedin": "https://linkedin.com/in/joaosilva",
+      "twitter": "https://twitter.com/joaosilva"
+    }
+  },
+  "about": {
+    "story": {
+      "pt": "Comecei a estudar programação há 5 anos, inicialmente como uma brincadeira, movido pela curiosidade de entender o que acontecia por trás das telas. Com o tempo, essa curiosidade se transformou em paixão e dedicação. Desde então, venho me especializando em desenvolvimento Back-End, com foco na criação de APIs robustas, na implementação de arquiteturas de microsserviços e na otimização de sistemas de alta performance. Atualmente, estou em processo de transição para a área de Ciência de Dados, unindo minha experiência em desenvolvimento à análise e interpretação de dados.",
+      "en": "I started learning programming five years ago, initially as a hobby, driven by a curiosity to understand what was happening behind the scenes. Over time, this curiosity turned into passion and dedication. Since then, I've been specializing in back-end development, focusing on creating robust APIs, implementing microservices architectures, and optimizing high-performance systems. I'm currently transitioning into data science, combining my development experience with data analysis and interpretation."
+    },
+    "highlights": [
+      {
+        "title": {
+          "pt": "APIs Escaláveis",
+          "en": "Scalable APIs"
+        },
+        "description": {
+          "pt": "Desenvolvimento de APIs RESTful e GraphQL que suportam muitas requisições",
+          "en": "Development of RESTful and GraphQL APIs that support many requests"
+        }
+      },
+      {
+        "title": {
+          "pt": "Microsserviços",
+          "en": "Microservices"
+        },
+        "description": {
+          "pt": "Arquiteturas distribuídas com Docker, RabbitMQ e message brokers",
+          "en": "Distributed architectures with Docker, RabbitMQ and message brokers"
+        }
+      },
+      {
+        "title": {
+          "pt": "Performance",
+          "en": "Performance"
+        },
+        "description": {
+          "pt": "Otimização de consultas, caching e monitoramento de sistemas críticos",
+          "en": "Query optimization, caching and critical systems monitoring"
+        }
+      }
+    ]
+  },
+  "skills": {
+    "languages": ["JavaScript", "TypeScript", "Python", "Java", "Go"],
+    "frameworks": ["Node.js", "Express.js", "NestJS", "FastAPI", "Spring Boot"],
+    "databases": ["PostgreSQL", "MongoDB", "Redis", "MySQL", "Elasticsearch"],
+    "tools": ["Docker", "Kubernetes", "AWS", "Git", "Jenkins"]
+  },
+  "projects": [
+    {
+      "title": "Sistema de Microsserviços E-commerce",
+      "description": {
+        "pt": "Arquitetura completa de microsserviços para plataforma de e-commerce com mais de 1M de usuários ativos.",
+        "en": "Complete microservices architecture for e-commerce platform with over 1M active users."
+      },
+      "technologies": ["Node.js", "Docker", "Kubernetes", "PostgreSQL", "Redis", "RabbitMQ"],
+      "gallery": [
+        "/projects/ecommerce/architecture.png",
+        "/projects/ecommerce/dashboard.png",
+        "/projects/ecommerce/api.png"
+      ],
+      "github": "https://github.com/joaosilva/ecommerce-microservices",
+      "demo": "https://demo-ecommerce.com"
+    },
+    {
+      "title": "API de Chat em Tempo Real",
+      "description": {
+        "pt": "Sistema de mensagens instantâneas com WebSockets, suportando salas, notificações push e histórico.",
+        "en": "Real-time messaging system with WebSockets, supporting rooms, push notifications and history."
+      },
+      "technologies": ["Node.js", "Socket.io", "MongoDB", "Redis", "JWT"],
+      "gallery": ["/projects/chat/interface.png", "/projects/chat/mobile.png"],
+      "github": "https://github.com/joaosilva/realtime-chat-api"
+    },
+    {
+      "title": "Dashboard de Analytics",
+      "description": {
+        "pt": "Plataforma de análise de dados em tempo real com processamento de grandes volumes de informações.",
+        "en": "Real-time data analytics platform with big data processing capabilities."
+      },
+      "technologies": ["Python", "FastAPI", "Elasticsearch", "Kafka", "Docker"],
+      "gallery": [
+        "/projects/analytics/dashboard.png",
+        "/projects/analytics/charts.png",
+        "/projects/analytics/reports.png"
+      ],
+      "github": "https://github.com/joaosilva/analytics-dashboard"
+    },
+    {
+      "title": "Sistema de Autenticação OAuth2",
+      "description": {
+        "pt": "Servidor de autenticação completo com OAuth2, JWT, 2FA e integração com provedores externos.",
+        "en": "Complete authentication server with OAuth2, JWT, 2FA and external provider integration."
+      },
+      "technologies": ["Node.js", "PostgreSQL", "Redis", "JWT", "Passport.js"],
+      "gallery": ["/projects/auth/login.png", "/projects/auth/dashboard.png"],
+      "github": "https://github.com/joaosilva/oauth2-server"
+    },
+    {
+      "title": "API de Upload de Arquivos",
+      "description": {
+        "pt": "Serviço robusto para upload, processamento e armazenamento de arquivos com suporte a múltiplos formatos.",
+        "en": "Robust service for file upload, processing and storage with multiple format support."
+      },
+      "technologies": ["Node.js", "AWS S3", "Sharp", "FFmpeg", "Bull Queue"],
+      "gallery": ["/projects/upload/interface.png", "/projects/upload/processing.png"],
+      "github": "https://github.com/joaosilva/file-upload-api"
+    },
+    {
+      "title": "Sistema de Monitoramento",
+      "description": {
+        "pt": "Plataforma completa de monitoramento de aplicações com métricas, logs e alertas em tempo real.",
+        "en": "Complete application monitoring platform with real-time metrics, logs and alerts."
+      },
+      "technologies": ["Go", "Prometheus", "Grafana", "InfluxDB", "Docker"],
+      "gallery": [
+        "/projects/monitoring/metrics.png",
+        "/projects/monitoring/alerts.png",
+        "/projects/monitoring/logs.png"
+      ],
+      "github": "https://github.com/joaosilva/monitoring-system"
+    }
+  ],
+  "education": [
+    {
+      "degree": {
+        "pt": "Bacharelado em Ciência da Computação",
+        "en": "Bachelor's Degree in Computer Science"
+      },
+      "institution": "Universidade de São Paulo (USP)",
+      "period": "2018 - 2022",
+      "description": {
+        "pt": "Formação sólida em algoritmos, estruturas de dados, engenharia de software e sistemas distribuídos.",
+        "en": "Solid foundation in algorithms, data structures, software engineering and distributed systems."
+      }
+    },
+    {
+      "degree": {
+        "pt": "Especialização em Arquitetura de Software",
+        "en": "Software Architecture Specialization"
+      },
+      "institution": "FIAP",
+      "period": "2023 - 2024",
+      "description": {
+        "pt": "Foco em padrões arquiteturais, microsserviços, DevOps e práticas de desenvolvimento ágil.",
+        "en": "Focus on architectural patterns, microservices, DevOps and agile development practices."
+      }
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Solutions Architect",
+      "issuer": "Amazon Web Services",
+      "date": "2023",
+      "credentialId": "AWS-SAA-123456"
+    },
+    {
+      "name": "Certified Kubernetes Administrator (CKA)",
+      "issuer": "Cloud Native Computing Foundation",
+      "date": "2023",
+      "credentialId": "CKA-789012"
+    },
+    {
+      "name": "MongoDB Certified Developer",
+      "issuer": "MongoDB Inc.",
+      "date": "2022",
+      "credentialId": "MDB-DEV-345678"
+    }
+  ],
+  "contact": [
+    {
+      "type": "email",
+      "label": "Email",
+      "value": "joao.silva@email.com",
+      "link": "mailto:joao.silva@email.com"
+    },
+    {
+      "type": "phone",
+      "label": "Telefone",
+      "value": "+55 (11) 99999-9999",
+      "link": "tel:+5511999999999"
+    },
+    {
+      "type": "location",
+      "label": "Localização",
+      "value": "São Paulo, SP - Brasil",
+      "link": null
+    }
+  ]
+}
