@@ -1,6 +1,7 @@
 "use client"
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react"
+import { LoadingScreen } from "../components/LoadingScreen"
 
 type Theme = "light" | "dark" | "system"
 type Language = "pt" | "en"
@@ -11,12 +12,15 @@ type AppContextType = {
   effectiveTheme: "light" | "dark"
   setTheme: (theme: Theme) => void
   setLanguage: (language: Language) => void
+  getLocalizedText: (text: { pt: string; en: string }) => string
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined)
 
+export { AppContext }
+
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("system")
+  const [theme, setTheme] = useState<Theme>("dark") // Default to dark
   const [language, setLanguage] = useState<Language>(() => {
     if (typeof window !== "undefined") {
       const browserLang = navigator.language.toLowerCase()
@@ -24,7 +28,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
     return "pt"
   })
-  const [effectiveTheme, setEffectiveTheme] = useState<"light" | "dark">("light")
+  const [effectiveTheme, setEffectiveTheme] = useState<"light" | "dark">("dark") // Default to dark
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("portfolio-theme") as Theme
@@ -32,6 +37,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
     if (savedTheme) {
       setTheme(savedTheme)
+    } else {
+      // Default to dark if no saved preference
+      setTheme("dark")
     }
 
     if (savedLanguage) {
@@ -42,6 +50,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
       const detectedLang = browserLang.startsWith("en") ? "en" : "pt"
       setLanguage(detectedLang)
     }
+
+    // Scroll to top when page loads
+    window.scrollTo(0, 0)
+
+    // Simulate loading time to detect theme properly
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 2000)
   }, [])
 
   useEffect(() => {
@@ -89,15 +105,25 @@ export function AppProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("portfolio-language", newLanguage)
   }
 
+  const getLocalizedText = (text: { pt: string; en: string }) => {
+    return language === "pt" ? text.pt : text.en
+  }
+
   const value: AppContextType = {
     theme,
     language,
     effectiveTheme,
     setTheme: handleSetTheme,
     setLanguage: handleSetLanguage,
+    getLocalizedText,
   }
 
-  return <AppContext.Provider value={value}>{children}</AppContext.Provider>
+  return (
+    <AppContext.Provider value={value}>
+      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+      {children}
+    </AppContext.Provider>
+  )
 }
 
 export function useApp() {

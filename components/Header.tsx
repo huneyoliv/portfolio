@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "../ui/button"
+import { Button } from "./ui/button"
 import { Menu, X } from "lucide-react"
 import { usePortfolioData } from "../hooks/usePortfolioData"
 import { ThemeToggle } from "./ThemeToggle"
@@ -26,10 +26,14 @@ export function Header() {
 
   // Evita rolagem do body quando o menu mobile está aberto
   useEffect(() => {
-    const original = document.body.style.overflow
-    document.body.style.overflow = isMenuOpen ? "hidden" : original
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "unset"
+    }
+    
     return () => {
-      document.body.style.overflow = original
+      document.body.style.overflow = "unset"
     }
   }, [isMenuOpen])
 
@@ -57,14 +61,15 @@ export function Header() {
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <button onClick={() => scrollToSection("inicio")} className="flex items-center gap-2">
-            <Image
+        <div className="flex items-center justify-between min-h-16 py-2">
+          <button 
+            onClick={() => scrollToSection("inicio")} 
+            className="flex items-center gap-2 group hover:scale-105 transition-all duration-300"
+          >
+            <img
               src={effectiveTheme === "dark" ? "/logos/logo_dark_mode.png" : "/logos/logo_light_mode.png"}
               alt="Huney Oliveira"
-              width={100}
-              height={22}
-              priority
+              className="h-16 w-auto group-hover:brightness-110 transition-all duration-300"
             />
           </button>
 
@@ -94,27 +99,30 @@ export function Header() {
           </div>
         </div>
 
-        {/* Mobile Navigation Overlay */}
+        {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-background/95 backdrop-blur-sm border-t border-border">
-            <nav className="py-6 h-full overflow-y-auto">
-              <div className="flex flex-col space-y-4 px-4">
-                {navItems.map((item) => (
+          <nav className="absolute top-full left-0 right-0 z-50 md:hidden bg-background border-t border-border shadow-lg animate-slide-down">
+            <div className="container mx-auto px-4 py-4">
+              <div className="flex flex-col space-y-4">
+                {navItems.map((item, index) => (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className="text-left text-foreground/90 hover:text-foreground transition-colors text-lg py-2"
+                    className="text-left text-foreground/80 hover:text-foreground transition-all duration-300 py-2 hover:translate-x-2 hover:bg-muted/30 rounded-md px-2 animate-fade-in-up"
+                    style={{ animationDelay: `${index * 100}ms` }}
                   >
                     {getLocalizedText(item.label)}
                   </button>
                 ))}
-                <div className="flex items-center gap-2 pt-4 border-t border-border sm:hidden">
-                  <ThemeToggle />
-                  <LanguageToggle />
+                <div className="pt-4 border-t border-border animate-fade-in-up" style={{ animationDelay: `${navItems.length * 100}ms` }}>
+                  <div className="flex items-center gap-2">
+                    <ThemeToggle />
+                    <LanguageToggle />
+                  </div>
                 </div>
               </div>
-            </nav>
-          </div>
+            </div>
+          </nav>
         )}
       </div>
     </header>

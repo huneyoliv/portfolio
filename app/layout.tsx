@@ -9,12 +9,9 @@ export const metadata: Metadata = {
 
   icons: {
     icon: [
-      { url: "/logos/logo_light_mode.png", media: "(prefers-color-scheme: light)", sizes: "96x96" },
-      { url: "/logos/logo_dark_mode.png", media: "(prefers-color-scheme: dark)", sizes: "96x96" },
-      { url: "/logos/logo_light_mode.png", media: "(prefers-color-scheme: light)", sizes: "64x64" },
-      { url: "/logos/logo_dark_mode.png", media: "(prefers-color-scheme: dark)", sizes: "64x64" },
-      { url: "/logos/logo_light_mode.png", sizes: "32x32" },
-      { url: "/logos/logo_dark_mode.png", sizes: "32x32" },
+      { url: "/favicons/favicon_light_mode.ico", media: "(prefers-color-scheme: light)" },
+      { url: "/favicons/favicon_dark_mode.ico", media: "(prefers-color-scheme: dark)" },
+      { url: "/favicons/favicon_dark_mode.ico" }, // Default fallback
     ],
   },
 }
@@ -25,7 +22,28 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (localStorage.getItem('theme') === 'light') {
+                  document.documentElement.classList.remove('dark')
+                } else {
+                  document.documentElement.classList.add('dark')
+                }
+                // Force scroll to top on page load
+                window.addEventListener('load', () => {
+                  setTimeout(() => {
+                    window.scrollTo(0, 0)
+                  }, 0)
+                })
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-screen bg-background font-sans antialiased">
         <AppProvider>{children}</AppProvider>
       </body>

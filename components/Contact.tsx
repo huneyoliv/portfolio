@@ -2,11 +2,11 @@
 
 import type React from "react"
 import { useState } from "react"
-import { Button } from "../ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
-import { Input } from "../ui/input"
-import { Textarea } from "../ui/textarea"
-import { Label } from "../ui/label"
+import { Button } from "./ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
+import { Input } from "./ui/input"
+import { Textarea } from "./ui/textarea"
+import { Label } from "./ui/label"
 import { Mail, MapPin, Phone, Send, CheckCircle, AlertCircle } from "lucide-react"
 import { useTranslation } from "../hooks/useTranslation"
 import { usePortfolioData } from "../hooks/usePortfolioData"
@@ -64,14 +64,14 @@ export function Contact() {
     <section id="contato" className="py-12 md:py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12 md:mb-16">
+          <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
             <h2 className="text-2xl md:text-3xl lg:text-4xl mb-4 font-bold">{t("contact.title")}</h2>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">{t("contact.subtitle")}</p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Contact Information */}
-            <div className="order-2 lg:order-1">
+            <div className="order-2 lg:order-1 animate-fade-in-up animation-delay-300">
               <h3 className="text-xl md:text-2xl mb-4 md:mb-6 font-semibold">{t("contact.letsChat")}</h3>
               <p className="text-muted-foreground mb-6 md:mb-8 text-sm md:text-base">{t("contact.description")}</p>
 
@@ -79,7 +79,8 @@ export function Contact() {
                 {contactInfo.map((info, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-3 md:gap-4 p-2 rounded-lg hover:bg-muted/50 transition-colors"
+                    className="flex items-center gap-3 md:gap-4 p-2 rounded-lg hover:bg-muted/50 hover:scale-105 transition-all duration-300 animate-fade-in-up"
+                    style={{ animationDelay: `${600 + index * 100}ms` }}
                   >
                     <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-lg flex-shrink-0">
                       {info.type === "email" && <Mail className="h-5 w-5 md:h-6 md:w-6 text-primary" />}
@@ -105,8 +106,8 @@ export function Contact() {
             </div>
 
             {/* Contact Form */}
-            <div className="order-1 lg:order-2">
-              <Card className="shadow-lg">
+            <div className="order-1 lg:order-2 animate-fade-in-up animation-delay-500">
+              <Card className="shadow-lg hover:shadow-xl transition-all duration-300">
                 <CardHeader className="pb-4">
                   <CardTitle className="text-lg md:text-xl">{t("contact.sendMessage")}</CardTitle>
                   <CardDescription className="text-sm md:text-base">{t("contact.formDescription")}</CardDescription>

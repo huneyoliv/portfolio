@@ -1,7 +1,7 @@
 "use client"
 
-import { Badge } from "../ui/badge"
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
+import { Badge } from "./ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 import { usePortfolioData } from "../hooks/usePortfolioData"
 
 export function Skills() {
@@ -44,14 +44,23 @@ export function Skills() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {skillCategories.map((category, index) => (
-              <Card key={index}>
+              <Card 
+                key={index} 
+                className="hover:scale-105 transition-all duration-300 hover:shadow-lg animate-fade-in-up"
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
                 <CardHeader>
                   <CardTitle className="text-xl">{category.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
                     {category.skills.map((skill, skillIndex) => (
-                      <Badge key={skillIndex} variant="secondary" className="text-sm py-1 px-3">
+                      <Badge 
+                        key={skillIndex} 
+                        variant="secondary" 
+                        className="text-sm py-1 px-3 hover:scale-110 hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+                        style={{ animationDelay: `${index * 200 + skillIndex * 50}ms` }}
+                      >
                         {skill}
                       </Badge>
                     ))}

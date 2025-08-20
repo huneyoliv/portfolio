@@ -1,9 +1,9 @@
 "use client"
 
-import { Button } from "../ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card"
-import { Badge } from "../ui/badge"
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
+import { Button } from "./ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card"
+import { Badge } from "./ui/badge"
+import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
 import { ExternalLink, Github, FileText, ImageIcon } from "lucide-react"
 import { usePortfolioData } from "../hooks/usePortfolioData"
 import { useState } from "react"
@@ -21,7 +21,7 @@ export function Projects() {
     <section id="projetos" className="py-12 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12 md:mb-16">
+          <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
             <h2 className="text-2xl md:text-3xl lg:text-4xl mb-4 font-bold">
               {getLocalizedText({ pt: "Projetos", en: "Projects" })}
             </h2>
@@ -35,7 +35,11 @@ export function Projects() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {projects.map((project, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col">
+              <Card 
+                key={index} 
+                className="overflow-hidden hover:shadow-lg hover:scale-105 transition-all duration-300 flex flex-col animate-fade-in-up"
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
                 <div className="aspect-video overflow-hidden">
                   <img
                     src={project.gallery?.[0] || "/placeholder.svg"}

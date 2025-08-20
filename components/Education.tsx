@@ -1,7 +1,7 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
-import { Badge } from "../ui/badge"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
+import { Badge } from "./ui/badge"
 import { Calendar } from "lucide-react"
 import { usePortfolioData } from "../hooks/usePortfolioData"
 
@@ -47,7 +47,7 @@ export function Education() {
     <section id="educacao" className="py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-fade-in-up">
             <h2 className="text-3xl md:text-4xl mb-4">
               {getLocalizedText({ pt: "Educação & Certificações", en: "Education & Certifications" })}
             </h2>
@@ -61,7 +61,11 @@ export function Education() {
 
           <div className="space-y-6">
             {allEducationItems.map((item, index) => (
-              <Card key={index} className="overflow-hidden">
+              <Card 
+                key={index} 
+                className="overflow-hidden hover:scale-105 hover:shadow-lg transition-all duration-300 animate-fade-in-up"
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
                 <CardHeader className="pb-4">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
