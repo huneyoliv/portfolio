@@ -4,6 +4,7 @@ import { Github, Linkedin, Mail, Heart } from "lucide-react"
 import { useContext } from "react"
 import { AppContext } from "../contexts/AppContext"
 
+
 export function Footer() {
   const { getLocalizedText } = useContext(AppContext)
   const currentYear = new Date().getFullYear()
@@ -11,17 +12,17 @@ export function Footer() {
   const socialLinks = [
     {
       icon: Github,
-      href: "https://github.com",
+      href: "https://github.com/huneyoliv",
       label: "GitHub",
     },
     {
       icon: Linkedin,
-      href: "https://linkedin.com",
+      href: "https://linkedin.com/in/huneyoliv",
       label: "LinkedIn",
     },
     {
       icon: Mail,
-      href: "mailto:seu@email.com",
+      href: "mailto:contact@devhuney.me",
       label: "Email",
     },
   ]
