@@ -85,11 +85,22 @@
   "education": [
     {
       "degree": {
+        "pt": "Bacharelado em Ciência da Computação",
+        "en": "Bachelor's Degree in Computer Science"
+      },
+      "institution": "Universidade Federal de Sergipe (UFS)",
+      "period": "2026 - 2031",
+      "description": {
+        "pt": "Formação sólida em algoritmos, estruturas de dados, engenharia de software e sistemas distribuídos.",
+        "en": "Solid foundation in algorithms, data structures, software engineering and distributed systems."
+    },
+    {
+      "degree": {
         "pt": "Bacharelado em Sistemas de Informação",
         "en": "Bachelor's Degree in Information Systems"
       },
       "institution": "Universidade Tiradentes (UNIT)",
-      "period": "2025 - 2029",
+      "period": "2025 - 2026 (Interrompido)",
       "description": {
         "pt": "Formação sólida em algoritmos, estruturas de dados, engenharia de software e sistemas distribuídos.",
         "en": "Solid foundation in algorithms, data structures, software engineering and distributed systems."
