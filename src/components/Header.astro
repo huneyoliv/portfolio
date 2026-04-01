@@ -1,0 +1,93 @@
+---
+import { siteConfig } from "../config";
+import { t } from "../i18n/index";
+
+interface Props {
+  lang?: string;
+  hasExperience?: boolean;
+  hasCertifications?: boolean;
+}
+
+const { lang = "pt", hasExperience = false, hasCertifications = false } = Astro.props;
+const otherLang = lang === "pt" ? "en" : "pt";
+const otherLangUrl = lang === "pt" ? "/en" : "/";
+
+const navItems = [
+  { key: "nav.about", href: "#about" },
+  { key: "nav.projects", href: "#projects" },
+  ...(hasExperience ? [{ key: "nav.experience", href: "#experience" }] : []),
+  { key: "nav.education", href: "#education" },
+  ...(hasCertifications ? [{ key: "nav.certifications", href: "#certifications" }] : []),
+  { key: "nav.contact", href: "#contact" },
+];
+---
+
+<header
+  class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800"
+>
+  <nav class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href={lang === "pt" ? "/" : "/en"} class="text-lg font-bold tracking-tight text-neutral-900 dark:text-white">
+      &lt;{siteConfig.name} /&gt;
+    </a>
+
+    <div class="flex items-center gap-6">
+      <ul class="hidden md:flex items-center gap-6 text-sm">
+        {navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+            >
+              {t(item.key, lang)}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <a
+        href={otherLangUrl}
+        class="text-xs font-semibold px-3 py-1.5 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:border-neutral-500 transition-all"
+      >
+        {otherLang.toUpperCase()}
+      </a>
+
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden text-neutral-600 dark:text-neutral-400"
+        aria-label="Menu"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950">
+    <ul class="flex flex-col px-6 py-4 gap-4 text-sm">
+      {navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+          >
+            {t(item.key, lang)}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  btn?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+  });
+  menu?.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", () => menu?.classList.add("hidden"));
+  });
+</script>

@@ -1,0 +1,86 @@
+---
+import { siteConfig } from "../config";
+import { t } from "../i18n/index";
+
+interface Project {
+  name: string;
+  description: string;
+  link: string;
+  codeLink?: string;
+  skills?: string[];
+  hasPreview?: boolean;
+}
+
+interface Props {
+  lang?: string;
+  translatedProjects?: Project[];
+  githubProjects?: Project[];
+}
+
+const { lang = "pt", translatedProjects, githubProjects } = Astro.props;
+
+const configProjects = translatedProjects || siteConfig.projects || [];
+const allProjects = [...configProjects, ...(githubProjects || [])];
+---
+
+{allProjects.length > 0 && (
+  <section id="projects" class="py-24 px-6 bg-neutral-50 dark:bg-neutral-900/50">
+    <div class="max-w-5xl mx-auto">
+      <h2
+        class="text-3xl font-bold text-neutral-900 dark:text-white mb-2 tracking-tight"
+      >
+        {t("projects.title", lang)}
+      </h2>
+      <div
+        class="w-16 h-1 mb-10 rounded-full"
+        style={`background-color: ${siteConfig.accentColor}`}
+      ></div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {allProjects.map((project) => (
+          <div class="group p-6 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all hover:shadow-lg">
+            <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-2 group-hover:text-[var(--accent)] transition-colors" style={`--accent: ${siteConfig.accentColor}`}>
+              {project.name}
+            </h3>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-4 leading-relaxed">
+              {project.description}
+            </p>
+
+            {project.skills && project.skills.length > 0 && (
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                {project.skills.map((skill: string) => (
+                  <span class="px-2 py-0.5 text-[10px] font-medium rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <div class="flex items-center gap-3">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" x2="21" y1="14" y2="3"></line></svg>
+                {project.hasPreview ? t("projects.view", lang) : t("projects.code", lang)}
+              </a>
+              {project.codeLink && project.hasPreview && (
+                <a
+                  href={project.codeLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                  {t("projects.code", lang)}
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

@@ -1,0 +1,44 @@
+---
+import { siteConfig } from "../config";
+import { t } from "../i18n/index";
+
+interface Props {
+  lang?: string;
+  translatedAboutMe?: string;
+  skills?: string[];
+}
+
+const { lang = "pt", translatedAboutMe, skills } = Astro.props;
+const aboutMe = translatedAboutMe || siteConfig.aboutMe;
+const displaySkills = skills || siteConfig.skills;
+---
+
+{siteConfig.aboutMe && (
+  <section id="about" class="py-24 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2
+        class="text-3xl font-bold text-neutral-900 dark:text-white mb-2 tracking-tight"
+      >
+        {t("about.title", lang)}
+      </h2>
+      <div
+        class="w-16 h-1 mb-10 rounded-full"
+        style={`background-color: ${siteConfig.accentColor}`}
+      ></div>
+
+      <p class="text-neutral-600 dark:text-neutral-400 leading-relaxed text-lg max-w-3xl mb-12">
+        {aboutMe}
+      </p>
+
+      {displaySkills && displaySkills.length > 0 && (
+        <div class="flex flex-wrap gap-2">
+          {displaySkills.map((skill) => (
+            <span class="px-3 py-1.5 text-xs font-medium rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700">
+              {skill}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+)}

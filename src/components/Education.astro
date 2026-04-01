@@ -1,0 +1,81 @@
+---
+import { siteConfig } from "../config";
+import { t } from "../i18n/index";
+import type { LinkedInEducation } from "../lib/linkedin";
+
+interface EducationItem {
+  school: string;
+  degree: string;
+  dateRange: string;
+  achievements?: string[];
+}
+
+interface Props {
+  lang?: string;
+  translatedEducation?: EducationItem[];
+  linkedinEducation?: LinkedInEducation[];
+}
+
+const { lang = "pt", translatedEducation, linkedinEducation = [] } = Astro.props;
+const configEducation = translatedEducation || siteConfig.education || [];
+
+const linkedinMapped = linkedinEducation.map((edu) => ({
+  school: edu.school,
+  degree: edu.degree ? `${edu.degree}${edu.fieldOfStudy ? ` - ${edu.fieldOfStudy}` : ""}` : edu.fieldOfStudy || "",
+  dateRange: `${edu.startDate}${edu.endDate ? ` - ${edu.endDate}` : ""}`,
+  achievements: [edu.description, edu.activities].filter(Boolean) as string[],
+}));
+
+const seen = new Set(configEducation.map((e) => e.school.toLowerCase()));
+const uniqueLinkedin = linkedinMapped.filter((e) => !seen.has(e.school.toLowerCase()));
+const education = [...configEducation, ...uniqueLinkedin];
+---
+
+{education.length > 0 && (
+  <section id="education" class="py-24 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2
+        class="text-3xl font-bold text-neutral-900 dark:text-white mb-2 tracking-tight"
+      >
+        {t("education.title", lang)}
+      </h2>
+      <div
+        class="w-16 h-1 mb-10 rounded-full"
+        style={`background-color: ${siteConfig.accentColor}`}
+      ></div>
+
+      <div class="space-y-8">
+        {education.map((edu) => (
+          <div class="relative pl-8 border-l-2 border-neutral-200 dark:border-neutral-800">
+            <div
+              class="absolute left-[-9px] top-1 w-4 h-4 rounded-full border-2 bg-white dark:bg-neutral-950"
+              style={`border-color: ${siteConfig.accentColor}`}
+            ></div>
+            <h3 class="text-lg font-semibold text-neutral-900 dark:text-white">
+              {edu.degree}
+            </h3>
+            <p class="text-sm text-neutral-500 dark:text-neutral-400 mb-1">
+              {edu.school}
+            </p>
+            <p
+              class="text-xs font-medium mb-3"
+              style={`color: ${siteConfig.accentColor}`}
+            >
+              {edu.dateRange}
+            </p>
+            {edu.achievements && edu.achievements.length > 0 && (
+              <ul class="space-y-1.5">
+                {edu.achievements.map((achievement: string) => (
+                  <li class="text-sm text-neutral-600 dark:text-neutral-400 flex items-start gap-2">
+                    <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-neutral-400 dark:bg-neutral-600 shrink-0"></span>
+                    {achievement}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

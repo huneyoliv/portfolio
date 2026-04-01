@@ -1,0 +1,53 @@
+---
+import { siteConfig } from "../config";
+import { t } from "../i18n/index";
+
+interface Props {
+  lang?: string;
+  hasExperience?: boolean;
+  hasCertifications?: boolean;
+}
+
+const { lang = "pt", hasExperience = false, hasCertifications = false } = Astro.props;
+
+const navItems = [
+  { key: "nav.about", href: "#about" },
+  { key: "nav.projects", href: "#projects" },
+  ...(hasExperience ? [{ key: "nav.experience", href: "#experience" }] : []),
+  { key: "nav.education", href: "#education" },
+  ...(hasCertifications ? [{ key: "nav.certifications", href: "#certifications" }] : []),
+  { key: "nav.contact", href: "#contact" },
+];
+---
+
+<footer class="border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950">
+  <div class="max-w-5xl mx-auto px-6 py-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <h3 class="text-lg font-bold text-neutral-900 dark:text-white tracking-tight">
+          &lt;{siteConfig.name} /&gt;
+        </h3>
+        <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-1">{siteConfig.title}</p>
+      </div>
+
+      <ul class="flex items-center gap-6 text-sm flex-wrap justify-center">
+        {navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+            >
+              {t(item.key, lang)}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-800 text-center">
+      <p class="text-xs text-neutral-400 dark:text-neutral-500">
+        &copy; {new Date().getFullYear()} {siteConfig.name}. {t("footer.rights", lang)}
+      </p>
+    </div>
+  </div>
+</footer>

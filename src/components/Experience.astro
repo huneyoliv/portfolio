@@ -1,0 +1,56 @@
+---
+import { siteConfig } from "../config";
+import { t } from "../i18n/index";
+import type { LinkedInExperience } from "../lib/linkedin";
+
+interface Props {
+  lang?: string;
+  experiences?: LinkedInExperience[];
+}
+
+const { lang = "pt", experiences = [] } = Astro.props;
+---
+
+{experiences.length > 0 && (
+  <section id="experience" class="py-24 px-6 bg-neutral-50 dark:bg-neutral-900/50">
+    <div class="max-w-5xl mx-auto">
+      <h2
+        class="text-3xl font-bold text-neutral-900 dark:text-white mb-2 tracking-tight"
+      >
+        {t("experience.title", lang)}
+      </h2>
+      <div
+        class="w-16 h-1 mb-10 rounded-full"
+        style={`background-color: ${siteConfig.accentColor}`}
+      ></div>
+
+      <div class="space-y-8">
+        {experiences.map((exp) => (
+          <div class="relative pl-8 border-l-2 border-neutral-200 dark:border-neutral-800">
+            <div
+              class="absolute left-[-9px] top-1 w-4 h-4 rounded-full border-2 bg-white dark:bg-neutral-950"
+              style={`border-color: ${siteConfig.accentColor}`}
+            ></div>
+            <h3 class="text-lg font-semibold text-neutral-900 dark:text-white">
+              {exp.title}
+            </h3>
+            <p class="text-sm text-neutral-500 dark:text-neutral-400 mb-1">
+              {exp.company}{exp.location ? ` · ${exp.location}` : ""}
+            </p>
+            <p
+              class="text-xs font-medium mb-3"
+              style={`color: ${siteConfig.accentColor}`}
+            >
+              {exp.startDate}{exp.endDate ? ` - ${exp.endDate}` : ""}
+            </p>
+            {exp.description && (
+              <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                {exp.description}
+              </p>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

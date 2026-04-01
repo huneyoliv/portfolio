@@ -1,0 +1,62 @@
+---
+import { siteConfig } from "../config";
+import { t } from "../i18n/index";
+import type { LinkedInCertification } from "../lib/linkedin";
+
+interface Props {
+  lang?: string;
+  certifications?: LinkedInCertification[];
+}
+
+const { lang = "pt", certifications = [] } = Astro.props;
+---
+
+{certifications.length > 0 && (
+  <section id="certifications" class="py-24 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2
+        class="text-3xl font-bold text-neutral-900 dark:text-white mb-2 tracking-tight"
+      >
+        {t("certifications.title", lang)}
+      </h2>
+      <div
+        class="w-16 h-1 mb-10 rounded-full"
+        style={`background-color: ${siteConfig.accentColor}`}
+      ></div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {certifications.map((cert) => (
+          <div class="p-5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all">
+            <div class="flex items-start gap-3">
+              <div
+                class="mt-1 w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                style={`background-color: ${siteConfig.accentColor}15`}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={siteConfig.accentColor} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 10 3 12 0v-5"></path></svg>
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-neutral-900 dark:text-white leading-tight">
+                  {cert.url ? (
+                    <a href={cert.url} target="_blank" rel="noopener noreferrer" class="hover:underline">
+                      {cert.name}
+                    </a>
+                  ) : cert.name}
+                </h3>
+                {cert.authority && (
+                  <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+                    {cert.authority}
+                  </p>
+                )}
+                {cert.startDate && (
+                  <p class="text-[10px] text-neutral-400 dark:text-neutral-500 mt-1">
+                    {cert.startDate}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
