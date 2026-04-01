@@ -7,6 +7,7 @@ interface Props {
 }
 
 const { lang = "pt" } = Astro.props;
+const web3formsKey = import.meta.env.WEB3FORMS_KEY || "";
 ---
 
 <section id="contact" class="py-24 px-6 bg-neutral-50 dark:bg-neutral-900/50">
@@ -79,7 +80,7 @@ const { lang = "pt" } = Astro.props;
   </div>
 </section>
 
-<script define:vars={{ email: siteConfig.social.email, successMsg: t("contact.success", lang), errorMsg: t("contact.error", lang) }}>
+<script define:vars={{ email: siteConfig.social.email, successMsg: t("contact.success", lang), errorMsg: t("contact.error", lang), w3fKey: web3formsKey }}>
   const form = document.getElementById("contact-form");
   const status = document.getElementById("contact-status");
   const submitBtn = document.getElementById("contact-submit");
@@ -99,7 +100,7 @@ const { lang = "pt" } = Astro.props;
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_KEY",
+          access_key: w3fKey,
           name,
           email: senderEmail,
           message,
