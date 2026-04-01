@@ -19,12 +19,26 @@ interface Props {
 const { lang = "pt", translatedEducation, linkedinEducation = [] } = Astro.props;
 const configEducation = translatedEducation || siteConfig.education || [];
 
-const linkedinMapped = linkedinEducation.map((edu) => ({
-  school: edu.school,
-  degree: edu.degree ? `${edu.degree}${edu.fieldOfStudy ? ` - ${edu.fieldOfStudy}` : ""}` : edu.fieldOfStudy || "",
-  dateRange: `${edu.startDate}${edu.endDate ? ` - ${edu.endDate}` : ""}`,
-  achievements: [edu.description, edu.activities].filter(Boolean) as string[],
-}));
+const linkedinMapped = linkedinEducation.map((edu) => {
+  const configMatch = configEducation.find(
+    (c) =>
+      c.school.toLowerCase().includes(edu.school.toLowerCase()) ||
+      edu.school.toLowerCase().includes(c.school.toLowerCase())
+  );
+  const achievements =
+    edu.description || edu.activities
+      ? [edu.description, edu.activities].filter(Boolean)
+      : configMatch?.achievements || [];
+
+  return {
+    school: edu.school,
+    degree: edu.degree
+      ? `${edu.degree}${edu.fieldOfStudy ? ` - ${edu.fieldOfStudy}` : ""}`.replace(/\bdegree\b/gi, "Degree")
+      : edu.fieldOfStudy || "",
+    dateRange: `${edu.startDate}${edu.endDate ? ` - ${edu.endDate}` : ""}`,
+    achievements: achievements as string[],
+  };
+});
 
 const education = linkedinMapped.length > 0 ? linkedinMapped : configEducation;
 ---

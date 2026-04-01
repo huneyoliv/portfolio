@@ -52,6 +52,6 @@ const allSkills = mergeSkills(siteConfig.skills, rawLinkedin.skills);
       <Certifications lang="en" certifications={linkedin.certifications as any[]} />
       <Contact lang="en" />
     </main>
-    <Footer lang="en" hasExperience={(linkedin.experience?.length ?? 0) > 0} hasCertifications={(linkedin.certifications?.length ?? 0) > 0} />
+    <Footer lang="en" translatedTitle={translated.title as string} hasExperience={(linkedin.experience?.length ?? 0) > 0} hasCertifications={(linkedin.certifications?.length ?? 0) > 0} />
   </body>
 </html>
