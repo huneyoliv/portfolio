@@ -28,15 +28,11 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Scrape LinkedIn
+      - name: Scrape LinkedIn via Apify
         run: node scripts/linkedin-scrape.mjs
         env:
-          LINKEDIN_EMAIL: ${{ secrets.LINKEDIN_EMAIL }}
-          LINKEDIN_PASSWORD: ${{ secrets.LINKEDIN_PASSWORD }}
-          LINKEDIN_USERNAME: huneyoliv
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          LINKEDIN_URL: https://www.linkedin.com/in/huneyoliv
         continue-on-error: true
 
       - name: Commit LinkedIn data

@@ -10,10 +10,8 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
+    "apify-client": "^2.22.3",
     "astro": "^5.12.3",
     "tailwindcss": "^4.1.11"
-  },
-  "devDependencies": {
-    "puppeteer": "^24.40.0"
   }
 }
