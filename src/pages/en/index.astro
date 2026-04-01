@@ -18,7 +18,7 @@ const rawGithubProjects = await fetchGitHubProjects("huneyoliv");
 const rawLinkedin = loadLinkedInData();
 
 const translated = await translateConfig(
-  { ...siteConfig, aboutMe: rawLinkedin.profile?.summary || siteConfig.aboutMe } as unknown as Record<string, unknown>,
+  { ...siteConfig } as unknown as Record<string, unknown>,
   "en"
 );
 const githubProjects = await translateGitHubProjects(rawGithubProjects as any[], "en");

@@ -20,7 +20,7 @@ const rawLinkedin = loadLinkedInData();
 const githubProjects = await translateGitHubProjects(rawGithubProjects as any[], "pt");
 const linkedin = await translateLinkedInData(rawLinkedin as any, "pt");
 const allSkills = mergeSkills(siteConfig.skills, rawLinkedin.skills);
-const aboutMe = linkedin.profile?.summary || siteConfig.aboutMe;
+const aboutMe = siteConfig.aboutMe;
 ---
 
 <html lang="pt">
