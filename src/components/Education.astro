@@ -26,9 +26,7 @@ const linkedinMapped = linkedinEducation.map((edu) => ({
   achievements: [edu.description, edu.activities].filter(Boolean) as string[],
 }));
 
-const seen = new Set(configEducation.map((e) => e.school.toLowerCase()));
-const uniqueLinkedin = linkedinMapped.filter((e) => !seen.has(e.school.toLowerCase()));
-const education = [...configEducation, ...uniqueLinkedin];
+const education = linkedinMapped.length > 0 ? linkedinMapped : configEducation;
 ---
 
 {education.length > 0 && (
