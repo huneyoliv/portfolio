@@ -9,6 +9,9 @@ interface Project {
   codeLink?: string;
   skills?: string[];
   hasPreview?: boolean;
+  images?: string[];
+  stars?: number;
+  language?: string;
 }
 
 interface Props {
@@ -37,50 +40,184 @@ const allProjects = [...configProjects, ...(githubProjects || [])];
       ></div>
 
       <div class="grid md:grid-cols-2 gap-6">
-        {allProjects.map((project) => (
-          <div class="group p-6 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all hover:shadow-lg">
-            <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-2 group-hover:text-[var(--accent)] transition-colors" style={`--accent: ${siteConfig.accentColor}`}>
+        {allProjects.map((project, index) => (
+          <div
+            class="group p-6 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all hover:shadow-lg cursor-pointer"
+            data-project-card={index}
+          >
+            <h3
+              class="text-lg font-semibold text-neutral-900 dark:text-white mb-2 group-hover:text-[var(--accent)] transition-colors"
+              style={`--accent: ${siteConfig.accentColor}`}
+            >
               {project.name}
             </h3>
-            <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-4 leading-relaxed">
+
+            <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-4 leading-relaxed line-clamp-2">
               {project.description}
             </p>
 
             {project.skills && project.skills.length > 0 && (
               <div class="flex flex-wrap gap-1.5 mb-4">
-                {project.skills.map((skill: string) => (
+                {project.skills.slice(0, 5).map((skill: string) => (
                   <span class="px-2 py-0.5 text-[10px] font-medium rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">
                     {skill}
                   </span>
                 ))}
+                {project.skills.length > 5 && (
+                  <span class="px-2 py-0.5 text-[10px] font-medium rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-500">
+                    +{project.skills.length - 5}
+                  </span>
+                )}
               </div>
             )}
 
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3" onclick="event.stopPropagation()">
+              {project.hasPreview && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-xs font-medium hover:text-neutral-900 dark:hover:text-white transition-colors"
+                  style={`color: ${siteConfig.accentColor}`}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" x2="21" y1="14" y2="3"></line></svg>
+                  {t("projects.view", lang)}
+                </a>
+              )}
               <a
-                href={project.link}
+                href={project.codeLink || project.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" x2="21" y1="14" y2="3"></line></svg>
-                {project.hasPreview ? t("projects.view", lang) : t("projects.code", lang)}
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                {t("projects.code", lang)}
               </a>
-              {project.codeLink && project.hasPreview && (
-                <a
-                  href={project.codeLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                  {t("projects.code", lang)}
-                </a>
-              )}
             </div>
           </div>
         ))}
       </div>
     </div>
+
+    <div
+      id="project-modal"
+      class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+    >
+      <div class="bg-white dark:bg-neutral-900 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-neutral-200 dark:border-neutral-800 shadow-2xl">
+        <div class="p-6">
+          <div class="flex items-start justify-between mb-4">
+            <h3 id="modal-title" class="text-xl font-bold text-neutral-900 dark:text-white"></h3>
+            <button
+              id="modal-close"
+              class="text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors p-1"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+            </button>
+          </div>
+
+          <div id="modal-images" class="mb-4 space-y-3 hidden"></div>
+
+          <p id="modal-description" class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4"></p>
+
+          <div id="modal-skills" class="flex flex-wrap gap-1.5 mb-5"></div>
+
+          <div id="modal-links" class="flex items-center gap-4 pt-4 border-t border-neutral-200 dark:border-neutral-800"></div>
+        </div>
+      </div>
+    </div>
   </section>
 )}
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>
+
+<script define:vars={{ allProjects, lang, accentColor: siteConfig.accentColor, viewLabel: t("projects.view", lang), codeLabel: t("projects.code", lang) }}>
+  const modal = document.getElementById("project-modal");
+  const modalTitle = document.getElementById("modal-title");
+  const modalDesc = document.getElementById("modal-description");
+  const modalSkills = document.getElementById("modal-skills");
+  const modalImages = document.getElementById("modal-images");
+  const modalLinks = document.getElementById("modal-links");
+  const modalClose = document.getElementById("modal-close");
+
+  document.querySelectorAll("[data-project-card]").forEach((card) => {
+    card.addEventListener("click", () => {
+      const idx = parseInt(card.getAttribute("data-project-card"));
+      const project = allProjects[idx];
+      if (!project) return;
+
+      modalTitle.textContent = project.name;
+      modalDesc.textContent = project.description;
+
+      modalSkills.innerHTML = "";
+      if (project.skills && project.skills.length > 0) {
+        project.skills.forEach((skill) => {
+          const span = document.createElement("span");
+          span.className = "px-2 py-0.5 text-[10px] font-medium rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400";
+          span.textContent = skill;
+          modalSkills.appendChild(span);
+        });
+      }
+
+      modalImages.innerHTML = "";
+      const imgs = project.images || [];
+      if (imgs.length > 0) {
+        modalImages.classList.remove("hidden");
+        imgs.forEach((url) => {
+          const img = document.createElement("img");
+          img.src = url;
+          img.alt = project.name;
+          img.className = "w-full rounded-lg border border-neutral-200 dark:border-neutral-800";
+          img.loading = "lazy";
+          modalImages.appendChild(img);
+        });
+      } else {
+        modalImages.classList.add("hidden");
+      }
+
+      modalLinks.innerHTML = "";
+      if (project.hasPreview) {
+        const previewLink = document.createElement("a");
+        previewLink.href = project.link;
+        previewLink.target = "_blank";
+        previewLink.rel = "noopener noreferrer";
+        previewLink.className = "inline-flex items-center gap-1.5 text-sm font-medium transition-colors hover:opacity-80";
+        previewLink.style.color = accentColor;
+        previewLink.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" x2="21" y1="14" y2="3"></line></svg> ${viewLabel}`;
+        modalLinks.appendChild(previewLink);
+      }
+      const codeLink = document.createElement("a");
+      codeLink.href = project.codeLink || project.link;
+      codeLink.target = "_blank";
+      codeLink.rel = "noopener noreferrer";
+      codeLink.className = "inline-flex items-center gap-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors";
+      codeLink.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg> ${codeLabel}`;
+      modalLinks.appendChild(codeLink);
+
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  modalClose?.addEventListener("click", closeModal);
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+
+  function closeModal() {
+    modal?.classList.add("hidden");
+    modal?.classList.remove("flex");
+    document.body.style.overflow = "";
+  }
+</script>

@@ -18,7 +18,7 @@ export async function fetchGitHubProjects(username: string) {
   for (const repo of repos) {
     if (repo.fork || repo.private) continue;
 
-    let hasImages = false;
+    let images: string[] = [];
     try {
       const imgRes = await fetch(
         `https://api.github.com/repos/${username}/${repo.name}/contents/img`,
@@ -26,7 +26,16 @@ export async function fetchGitHubProjects(username: string) {
       );
       if (imgRes.ok) {
         const imgFiles = await imgRes.json();
-        hasImages = Array.isArray(imgFiles) && imgFiles.length > 0;
+        if (Array.isArray(imgFiles)) {
+          images = imgFiles
+            .filter((f: { name: string }) =>
+              /\.(png|jpg|jpeg|gif|webp|svg)$/i.test(f.name)
+            )
+            .map(
+              (f: { name: string }) =>
+                `https://raw.githubusercontent.com/${username}/${repo.name}/main/img/${f.name}`
+            );
+        }
       }
     } catch {}
 
@@ -37,9 +46,7 @@ export async function fetchGitHubProjects(username: string) {
       codeLink: repo.html_url,
       skills: repo.topics || [],
       hasPreview: !!repo.homepage,
-      images: hasImages
-        ? `https://api.github.com/repos/${username}/${repo.name}/contents/img`
-        : null,
+      images,
       stars: repo.stargazers_count || 0,
       language: repo.language || null,
     });
