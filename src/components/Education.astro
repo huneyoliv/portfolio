@@ -19,16 +19,17 @@ interface Props {
 const { lang = "pt", translatedEducation, linkedinEducation = [] } = Astro.props;
 const configEducation = translatedEducation || siteConfig.education || [];
 
+// Competências / Skills label para fallback bidirecional
+const skillsLabel = lang === "pt" ? "Principais competências" : "Core skills";
+const fallbackSkills = [
+  `${skillsLabel}: ${siteConfig.skills.join(", ")}`
+];
+
 const linkedinMapped = linkedinEducation.map((edu) => {
-  const configMatch = configEducation.find(
-    (c) =>
-      c.school.toLowerCase().includes(edu.school.toLowerCase()) ||
-      edu.school.toLowerCase().includes(c.school.toLowerCase())
-  );
   const achievements =
     edu.description || edu.activities
       ? [edu.description, edu.activities].filter(Boolean)
-      : configMatch?.achievements || [];
+      : fallbackSkills;
 
   return {
     school: edu.school,
