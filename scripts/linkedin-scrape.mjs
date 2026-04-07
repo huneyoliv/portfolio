@@ -21,7 +21,7 @@ async function main() {
   console.log(`Scraping LinkedIn profile: ${LINKEDIN_URL}`);
 
   const run = await client.actor("dev_fusion/Linkedin-Profile-Scraper").call({
-    urls: [LINKEDIN_URL],
+    profileUrls: [LINKEDIN_URL],
     cookie: process.env.LINKEDIN_COOKIE || "",
   });
 

@@ -28,6 +28,9 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Install Dependencies
+        run: npm ci
+
       - name: Scrape LinkedIn via Apify
         run: node scripts/linkedin-scrape.mjs
         env:

@@ -11,6 +11,20 @@ interface Props {
 const { lang = "pt", translatedAboutMe, skills } = Astro.props;
 const aboutMe = translatedAboutMe || siteConfig.aboutMe;
 const displaySkills = skills || siteConfig.skills;
+
+let techStackImgUrl = "";
+try {
+  const res = await fetch("https://raw.githubusercontent.com/huneyoliv/huneyoliv/refs/heads/main/README.md");
+  if (res.ok) {
+    const text = await res.text();
+    const match = text.match(/https:\/\/skillicons\.dev\/icons\?i=[a-zA-Z0-9_,]+/);
+    if (match) {
+      techStackImgUrl = match[0];
+    }
+  }
+} catch (e) {
+  // Ignora falhas na extração dinâmica
+}
 ---
 
 {siteConfig.aboutMe && (
@@ -30,7 +44,11 @@ const displaySkills = skills || siteConfig.skills;
         {aboutMe}
       </p>
 
-      {displaySkills && displaySkills.length > 0 && (
+      {techStackImgUrl ? (
+        <div class="mt-8 flex justify-center w-full px-4 overflow-x-auto overflow-y-hidden">
+          <img src={techStackImgUrl} alt="My Tech Stack" loading="lazy" class="max-w-none md:max-w-full hover:scale-[1.02] transition-transform duration-300" />
+        </div>
+      ) : displaySkills && displaySkills.length > 0 && (
         <div class="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
           {displaySkills.map((skill) => (
             <span class="px-5 py-2 text-sm font-medium rounded-full bg-neutral-100 dark:bg-[#1f1f1f] text-neutral-800 dark:text-neutral-200 border border-neutral-300 dark:border-white/10 shadow-sm transition-all hover:bg-neutral-200 dark:hover:bg-[#292929] flex items-center">

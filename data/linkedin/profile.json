@@ -1,66 +1,73 @@
 {
-  "lastUpdated": "2026-04-01T12:54:53.322Z",
+  "lastUpdated": "2026-04-07T12:47:02.396Z",
   "profile": {
     "name": "Huney Oliveira",
     "headline": "Desenvolvedor Back-End em transição | Node.js · Python · FastAPI",
-    "summary": "Desenvolvedor back-end com experiência prática em Node.js, Python (FastAPI e Flask) e bancos de dados relacionais e não-relacionais (MySQL, MongoDB).\n\nAtuei no suporte técnico avançado de um produto SaaS (Vematize), mantendo automações back-end, diagnosticando falhas em integrações com gateways de pagamento e analisando logs em ambiente de produção.\n\nMinha base em manutenção de hardware — onde diagnostiquei e reparei mais de 100 equipamentos — me formou com raciocínio sistemático, atenção a detalhes e resiliência frente a problemas complexos: qualidades que aplico diretamente no desenvolvimento de software.\n\nAtualmente cursando Ciência da Computação na UFS e buscando minha primeira oportunidade como desenvolvedor back-end júnior. Disponível para remoto ou híbrido em Aracaju.\n\nTecnologias: Node.js · Python · FastAPI · Flask · MySQL · MongoDB · REST APIs · Webhooks · Git\n\nQuer trocar uma ideia? Me manda mensagem.",
+    "summary": "Desenvolvedor back-end com experiência prática em Node.js, Python (FastAPI e Flask) e bancos de dados relacionais e não-relacionais (MySQL, MongoDB).\n\n...",
     "location": "Aracaju, Sergipe, Brazil",
-    "profilePicture": "https://media.licdn.com/dms/image/v2/D4E03AQHz7z2dtoDk1g/profile-displayphoto-crop_800_800/B4EZkg_g5cGoAI-/0/1757195146682?e=1776902400&v=beta&t=PBgL2i0nLucW54f6B3CfPHFUZvGzNXY0T3wFO3o97qY",
+    "profilePicture": "https://media.licdn.com/dms/image/v2/D4E03AQHz7z2dtoDk1g/profile-displayphoto-scale_100_100/B4EZkg_g5cGoAc-/0/1757195146780?e=1776902400&v=beta&t=mOxFwlgGwSoaECzJ1-v2Xl_IoC_XfzEYjdUZRCjv0zU",
     "backgroundPicture": "https://media.licdn.com/dms/image/v2/D4E16AQGl7ogPdaK2lw/profile-displaybackgroundimage-shrink_350_1400/B4EZ06UCmKIkAY-/0/1774799827504?e=1776902400&v=beta&t=0GbLCS2TQ3UxRIx_VBZTqmCq5rn7hWZG6c1pzOnKXrs",
-    "openToWork": true
+    "openToWork": false
   },
   "experience": [
     {
       "title": "Técnico de manutenção",
-      "company": "Self-employed",
-      "location": "Boquim, Sergipe, Brasil",
-      "startDate": "Nov 2023",
-      "endDate": "Dec 2025",
-      "duration": "Nov 2023 - Dec 2025 · 2 yrs 2 mos",
-      "description": "• Diagnostiquei e reparei mais de 100 equipamentos (placas-mãe, SSDs, trilhas danificadas, fontes).\n• Realizei instalação e configuração de sistemas operacionais Windows e Linux em ambientes de produção.\n• Configurei redes locais e instalei impressoras, garantindo disponibilidade dos ambientes de trabalho dos clientes.\n• Desenvolvi habilidade de resolução sistemática de problemas — base direta para debugging em código.",
+      "company": "Freelance",
+      "location": "Boquim, Sergipe, Brasil · On-site",
+      "startDate": "11-2023",
+      "endDate": "Presente",
+      "duration": "",
+      "description": "• Diagnostiquei e reparei mais de 100 equipamentos...",
       "employmentType": "",
-      "locationType": "On-site"
+      "locationType": ""
     },
     {
       "title": "Técnico de manutenção",
       "company": "TeraBoss",
-      "location": "Boquim, Sergipe, Brazil",
-      "startDate": "Jan 2022",
-      "endDate": "Nov 2023",
-      "duration": "Jan 2022 - Nov 2023 · 1 yr 11 mos",
-      "description": "• Realizei manutenção e reparo em equipamentos de clientes (placas-mãe, fontes, SSDs e trilhas danificadas).\n• Diagnostiquei falhas de hardware e software e montei novos equipamentos sob demanda.\n• Instalei e configurei sistemas operacionais Windows e Linux em ambientes de produção.\n• Aprendi na prática a trabalhar sob pressão, entregar com qualidade e comunicar soluções técnicas a clientes não-técnicos.",
-      "employmentType": "Part-time",
-      "locationType": "On-site"
+      "location": "Boquim, SE · On-site",
+      "startDate": "",
+      "endDate": "Presente",
+      "duration": "",
+      "description": "• Realizei manutenção e reparo...",
+      "employmentType": "",
+      "locationType": ""
     }
   ],
   "education": [
     {
       "school": "Universidade Federal de Sergipe",
       "degree": "Bacharelado em Ciência da Computação",
-      "fieldOfStudy": "Tecnologia da Informação",
-      "startDate": "Mar 2026",
-      "endDate": "Dec 2031",
-      "duration": "Mar 2026 - Dec 2031",
-      "schoolLogo": "https://media.licdn.com/dms/image/v2/D4D0BAQE-me9zEHt3wg/company-logo_400_400/company-logo_400_400/0/1736425756970?e=1776902400&v=beta&t=UXzDd6-3hYKR9jP_zY-e8SCtmGaUySg8EJllw9PZdso"
+      "fieldOfStudy": "",
+      "startDate": "",
+      "endDate": "",
+      "duration": "",
+      "schoolLogo": "https://media.licdn.com/dms/image/v2/D4D0BAQE-me9zEHt3wg/company-logo_200_200/company-logo_200_200/0/1736425756970?e=1776902400&v=beta&t=-HDL8CskQreuS6gd7xWiUey09nI2F2XgJm4u04-sGgk"
     },
     {
       "school": "Universidade Tiradentes-Unit",
-      "degree": "Bacharelado",
-      "fieldOfStudy": "Sistemas de Informação",
-      "startDate": "Jul 2025",
-      "endDate": "Mar 2026",
-      "duration": "Jul 2025 - Mar 2026",
-      "schoolLogo": "https://media.licdn.com/dms/image/v2/D4D0BAQG5jAGLVAfu1A/company-logo_400_400/company-logo_400_400/0/1666121349084/unit_br_logo?e=1776902400&v=beta&t=bcZa_LXcO0y_PaNeM5Si9RNkBAabHdMtk62xfB24Fzo"
+      "degree": "Bacharelado, Sistemas de Informação",
+      "fieldOfStudy": "",
+      "startDate": "",
+      "endDate": "",
+      "duration": "",
+      "schoolLogo": "https://media.licdn.com/dms/image/v2/D4D0BAQG5jAGLVAfu1A/company-logo_200_200/company-logo_200_200/0/1666121349084/unit_br_logo?e=1776902400&v=beta&t=bkT67ysvYhsDLlcqthi-zdLPBkMAzCjQBg4kw3gbKV4"
     }
   ],
-  "skills": [
-    "Inglês",
-    "Python",
-    "FastAPI",
-    "Node.js",
-    "JavaScript"
+  "skills": [],
+  "certifications": [
+    {
+      "name": "Set Up an App Dev Environment on Google Cloud Skill Badge",
+      "authority": "Google",
+      "startDate": "Apr 2026",
+      "url": ""
+    },
+    {
+      "name": "Implement Load Balancing on Compute Engine Skill Badge",
+      "authority": "Google",
+      "startDate": "Mar 2026",
+      "url": ""
+    }
   ],
-  "certifications": [],
   "languages": [
     {
       "language": "English",
