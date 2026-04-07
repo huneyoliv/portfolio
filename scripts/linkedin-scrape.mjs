@@ -20,9 +20,9 @@ const client = new ApifyClient({ token: APIFY_TOKEN });
 async function main() {
   console.log(`Scraping LinkedIn profile: ${LINKEDIN_URL}`);
 
-  const run = await client.actor("dev_fusion/Linkedin-Profile-Scraper").call({
-    profileUrls: [LINKEDIN_URL],
-    cookie: process.env.LINKEDIN_COOKIE || "",
+  const run = await client.actor("harvestapi/linkedin-profile-scraper").call({
+    profileScraperMode: "Profile details no email ($4 per 1k)",
+    queries: [LINKEDIN_URL],
   });
 
   console.log(`Actor run completed: ${run.id}`);
@@ -58,7 +58,7 @@ function formatDate(dateObj) {
 }
 
 function transformData(raw) {
-  // Suporte à estrutura do dev_fusion/Linkedin-Profile-Scraper
+  // Suporte unificado à estrutura do harvestapi e atores anteriores
   const info = raw.basic_info || raw.profile || raw;
 
   return {
@@ -67,41 +67,41 @@ function transformData(raw) {
       name: info.fullName || `${info.firstName || ""} ${info.lastName || ""}`.trim() || info.name,
       headline: info.headline || "",
       summary: info.about || info.summary || "",
-      location: info.addressWithCountry || info.location || "",
-      profilePicture: info.profilePicHighQuality || info.profilePic || info.image || "",
-      backgroundPicture: info.backgroundPic || info.backgroundPicture || "",
+      location: info.location?.linkedinText || info.addressWithCountry || info.location || "",
+      profilePicture: info.profilePicture?.url || info.profilePicHighQuality || info.profilePic || info.image || "",
+      backgroundPicture: info.coverPicture?.url || info.backgroundPic || info.backgroundPicture || "",
       openToWork: info.openToWork || info.open_to_work || false,
     },
-    experience: (info.experiences || raw.experience || []).map((pos) => ({
-      title: pos.title || "",
+    experience: (info.experience || info.experiences || []).map((pos) => ({
+      title: pos.position || pos.title || "",
       company: pos.companyName || pos.company || "",
-      location: pos.jobLocation || pos.location || "",
-      startDate: pos.jobStartedOn || formatDate(pos.startDate || pos.start_date),
-      endDate: (pos.jobStillWorking || pos.isCurrent || !pos.jobEndedOn && !pos.endDate) ? "Presente" : (pos.jobEndedOn || formatDate(pos.endDate || pos.end_date)),
+      location: pos.location || pos.jobLocation || "",
+      startDate: pos.startDate?.text || pos.jobStartedOn || formatDate(pos.startDate || pos.start_date),
+      endDate: (!pos.endDate?.text && !pos.endDate && !pos.jobEndedOn && pos.isCurrent !== false) ? "Presente" : (pos.endDate?.text || pos.jobEndedOn || formatDate(pos.endDate || pos.end_date)),
       duration: pos.duration || "",
-      description: pos.jobDescription || pos.description || "",
+      description: pos.description || pos.jobDescription || "",
       employmentType: pos.employmentType || pos.employment_type || "",
-      locationType: pos.jobLocationCountry || pos.locationType || "",
+      locationType: pos.workplaceType || pos.jobLocationCountry || pos.locationType || "",
     })),
-    education: (info.educations || raw.education || []).map((edu) => ({
-      school: edu.title || edu.school || edu.schoolName || "",
-      degree: edu.subtitle || edu.degree || "",
+    education: (info.education || info.educations || []).map((edu) => ({
+      school: edu.schoolName || edu.title || edu.school || "",
+      degree: edu.degree || edu.subtitle || "",
       fieldOfStudy: edu.fieldOfStudy || edu.field_of_study || "",
-      startDate: edu.period?.startedOn || formatDate(edu.startDate),
-      endDate: edu.period?.endedOn || formatDate(edu.endDate),
-      duration: edu.duration || "",
-      schoolLogo: edu.logo || edu.schoolLogo || "",
+      startDate: edu.startDate?.text || edu.period?.startedOn || formatDate(edu.startDate),
+      endDate: edu.endDate?.text || edu.period?.endedOn || formatDate(edu.endDate),
+      duration: edu.period || edu.duration || "",
+      schoolLogo: edu.schoolLogo?.url || edu.logo || edu.schoolLogo || "",
     })),
     skills: [...new Set(info.skills || info.top_skills || [])]
-      .map(s => typeof s === "string" ? s : (s.title || s.name || ""))
+      .map(s => typeof s === "string" ? s : (s.name || s.title || ""))
       .filter(Boolean),
-    certifications: (info.licenseAndCertificates || raw.certifications || []).map((cert) => ({
+    certifications: (info.certifications || info.licenseAndCertificates || []).map((cert) => ({
       name: cert.title || cert.name || "",
-      authority: cert.subtitle || cert.authority || cert.issuer || "",
-      startDate: cert.caption ? cert.caption.replace("Issued ", "").replace("Emitido em ", "") : formatDate(cert.startDate),
+      authority: cert.issuedBy || cert.subtitle || cert.authority || cert.issuer || "",
+      startDate: cert.issuedAt ? cert.issuedAt.replace("Issued ", "").replace("Emitido em ", "") : (cert.caption ? cert.caption.replace("Issued ", "").replace("Emitido em ", "") : formatDate(cert.startDate)),
       url: cert.url || cert.credential_url || cert.certificateId || "",
     })),
-    languages: (info.languages || raw.languages || []).map((lang) => ({
+    languages: (info.languages || []).map((lang) => ({
       language: lang.name || lang.language || "",
       proficiency: lang.proficiency || "",
     })),
