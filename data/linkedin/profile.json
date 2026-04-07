@@ -1,77 +1,16 @@
 {
-  "lastUpdated": "2026-04-07T12:47:02.396Z",
+  "lastUpdated": "2026-04-07T12:58:05.777Z",
   "profile": {
-    "name": "Huney Oliveira",
-    "headline": "Desenvolvedor Back-End em transição | Node.js · Python · FastAPI",
-    "summary": "Desenvolvedor back-end com experiência prática em Node.js, Python (FastAPI e Flask) e bancos de dados relacionais e não-relacionais (MySQL, MongoDB).\n\n...",
-    "location": "Aracaju, Sergipe, Brazil",
-    "profilePicture": "https://media.licdn.com/dms/image/v2/D4E03AQHz7z2dtoDk1g/profile-displayphoto-scale_100_100/B4EZkg_g5cGoAc-/0/1757195146780?e=1776902400&v=beta&t=mOxFwlgGwSoaECzJ1-v2Xl_IoC_XfzEYjdUZRCjv0zU",
-    "backgroundPicture": "https://media.licdn.com/dms/image/v2/D4E16AQGl7ogPdaK2lw/profile-displaybackgroundimage-shrink_350_1400/B4EZ06UCmKIkAY-/0/1774799827504?e=1776902400&v=beta&t=0GbLCS2TQ3UxRIx_VBZTqmCq5rn7hWZG6c1pzOnKXrs",
+    "headline": "",
+    "summary": "",
+    "location": "",
+    "profilePicture": "",
+    "backgroundPicture": "",
     "openToWork": false
   },
-  "experience": [
-    {
-      "title": "Técnico de manutenção",
-      "company": "Freelance",
-      "location": "Boquim, Sergipe, Brasil · On-site",
-      "startDate": "11-2023",
-      "endDate": "Presente",
-      "duration": "",
-      "description": "• Diagnostiquei e reparei mais de 100 equipamentos...",
-      "employmentType": "",
-      "locationType": ""
-    },
-    {
-      "title": "Técnico de manutenção",
-      "company": "TeraBoss",
-      "location": "Boquim, SE · On-site",
-      "startDate": "",
-      "endDate": "Presente",
-      "duration": "",
-      "description": "• Realizei manutenção e reparo...",
-      "employmentType": "",
-      "locationType": ""
-    }
-  ],
-  "education": [
-    {
-      "school": "Universidade Federal de Sergipe",
-      "degree": "Bacharelado em Ciência da Computação",
-      "fieldOfStudy": "",
-      "startDate": "",
-      "endDate": "",
-      "duration": "",
-      "schoolLogo": "https://media.licdn.com/dms/image/v2/D4D0BAQE-me9zEHt3wg/company-logo_200_200/company-logo_200_200/0/1736425756970?e=1776902400&v=beta&t=-HDL8CskQreuS6gd7xWiUey09nI2F2XgJm4u04-sGgk"
-    },
-    {
-      "school": "Universidade Tiradentes-Unit",
-      "degree": "Bacharelado, Sistemas de Informação",
-      "fieldOfStudy": "",
-      "startDate": "",
-      "endDate": "",
-      "duration": "",
-      "schoolLogo": "https://media.licdn.com/dms/image/v2/D4D0BAQG5jAGLVAfu1A/company-logo_200_200/company-logo_200_200/0/1666121349084/unit_br_logo?e=1776902400&v=beta&t=bkT67ysvYhsDLlcqthi-zdLPBkMAzCjQBg4kw3gbKV4"
-    }
-  ],
+  "experience": [],
+  "education": [],
   "skills": [],
-  "certifications": [
-    {
-      "name": "Set Up an App Dev Environment on Google Cloud Skill Badge",
-      "authority": "Google",
-      "startDate": "Apr 2026",
-      "url": ""
-    },
-    {
-      "name": "Implement Load Balancing on Compute Engine Skill Badge",
-      "authority": "Google",
-      "startDate": "Mar 2026",
-      "url": ""
-    }
-  ],
-  "languages": [
-    {
-      "language": "English",
-      "proficiency": "Elementary proficiency"
-    }
-  ]
+  "certifications": [],
+  "languages": []
 }
