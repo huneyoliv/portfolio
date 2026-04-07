@@ -33,6 +33,7 @@ jobs:
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
           LINKEDIN_URL: https://www.linkedin.com/in/huneyoliv
+          LINKEDIN_COOKIE: ${{ secrets.LINKEDIN_COOKIE }}
         continue-on-error: true
 
       - name: Commit LinkedIn data

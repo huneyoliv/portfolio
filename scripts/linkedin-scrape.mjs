@@ -20,8 +20,9 @@ const client = new ApifyClient({ token: APIFY_TOKEN });
 async function main() {
   console.log(`Scraping LinkedIn profile: ${LINKEDIN_URL}`);
 
-  const run = await client.actor("UkdBTMOn70jc2XbdM").call({
-    profile: LINKEDIN_URL,
+  const run = await client.actor("dev_fusion/Linkedin-Profile-Scraper").call({
+    urls: [LINKEDIN_URL],
+    cookie: process.env.LINKEDIN_COOKIE || "",
   });
 
   console.log(`Actor run completed: ${run.id}`);
@@ -57,48 +58,51 @@ function formatDate(dateObj) {
 }
 
 function transformData(raw) {
-  const info = raw.basic_info || {};
+  // Suporte à estrutura do dev_fusion/Linkedin-Profile-Scraper
+  const info = raw.basic_info || raw.profile || raw;
 
   return {
     lastUpdated: new Date().toISOString(),
     profile: {
-      name: info.fullname || `${info.first_name || ""} ${info.last_name || ""}`.trim(),
+      name: info.fullName || `${info.firstName || ""} ${info.lastName || ""}`.trim() || info.name,
       headline: info.headline || "",
-      summary: info.about || "",
-      location: info.location?.full || info.location?.city || "",
-      profilePicture: info.profile_picture_url || "",
-      backgroundPicture: info.background_picture_url || "",
-      openToWork: info.open_to_work || false,
+      summary: info.about || info.summary || "",
+      location: info.addressWithCountry || info.location || "",
+      profilePicture: info.profilePicHighQuality || info.profilePic || info.image || "",
+      backgroundPicture: info.backgroundPic || info.backgroundPicture || "",
+      openToWork: info.openToWork || info.open_to_work || false,
     },
-    experience: (raw.experience || []).map((pos) => ({
+    experience: (info.experiences || raw.experience || []).map((pos) => ({
       title: pos.title || "",
-      company: pos.company || "",
-      location: pos.location || "",
-      startDate: formatDate(pos.start_date),
-      endDate: pos.is_current ? "Presente" : formatDate(pos.end_date),
+      company: pos.companyName || pos.company || "",
+      location: pos.jobLocation || pos.location || "",
+      startDate: pos.jobStartedOn || formatDate(pos.startDate || pos.start_date),
+      endDate: (pos.jobStillWorking || pos.isCurrent || !pos.jobEndedOn && !pos.endDate) ? "Presente" : (pos.jobEndedOn || formatDate(pos.endDate || pos.end_date)),
       duration: pos.duration || "",
-      description: pos.description || "",
-      employmentType: pos.employment_type || "",
-      locationType: pos.location_type || "",
+      description: pos.jobDescription || pos.description || "",
+      employmentType: pos.employmentType || pos.employment_type || "",
+      locationType: pos.jobLocationCountry || pos.locationType || "",
     })),
-    education: (raw.education || []).map((edu) => ({
-      school: edu.school || "",
-      degree: edu.degree_name || edu.degree || "",
-      fieldOfStudy: edu.field_of_study || "",
-      startDate: formatDate(edu.start_date),
-      endDate: formatDate(edu.end_date),
+    education: (info.educations || raw.education || []).map((edu) => ({
+      school: edu.title || edu.school || edu.schoolName || "",
+      degree: edu.subtitle || edu.degree || "",
+      fieldOfStudy: edu.fieldOfStudy || edu.field_of_study || "",
+      startDate: edu.period?.startedOn || formatDate(edu.startDate),
+      endDate: edu.period?.endedOn || formatDate(edu.endDate),
       duration: edu.duration || "",
-      schoolLogo: edu.school_logo_url || "",
+      schoolLogo: edu.logo || edu.schoolLogo || "",
     })),
-    skills: [...new Set(info.top_skills || [])],
-    certifications: (raw.certifications || []).map((cert) => ({
-      name: cert.name || cert.title || "",
-      authority: cert.authority || cert.company || cert.issuer || "",
-      startDate: formatDate(cert.start_date),
-      url: cert.url || cert.credential_url || "",
+    skills: [...new Set(info.skills || info.top_skills || [])]
+      .map(s => typeof s === "string" ? s : (s.title || s.name || ""))
+      .filter(Boolean),
+    certifications: (info.licenseAndCertificates || raw.certifications || []).map((cert) => ({
+      name: cert.title || cert.name || "",
+      authority: cert.subtitle || cert.authority || cert.issuer || "",
+      startDate: cert.caption ? cert.caption.replace("Issued ", "").replace("Emitido em ", "") : formatDate(cert.startDate),
+      url: cert.url || cert.credential_url || cert.certificateId || "",
     })),
-    languages: (raw.languages || []).map((lang) => ({
-      language: lang.language || "",
+    languages: (info.languages || raw.languages || []).map((lang) => ({
+      language: lang.name || lang.language || "",
       proficiency: lang.proficiency || "",
     })),
   };

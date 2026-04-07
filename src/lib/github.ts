@@ -17,6 +17,7 @@ export async function fetchGitHubProjects(username: string) {
   const projects = [];
   for (const repo of repos) {
     if (repo.fork || repo.private) continue;
+    if (repo.name.toLowerCase() === "huneyoliv" || repo.name.toUpperCase().startsWith("EFI")) continue;
 
     let images: string[] = [];
     try {
@@ -49,8 +50,19 @@ export async function fetchGitHubProjects(username: string) {
       images,
       stars: repo.stargazers_count || 0,
       language: repo.language || null,
+      size: repo.size || 0,
     });
   }
+
+  projects.sort((a, b) => {
+    const aHasPhoto = a.images.length > 0 ? 1 : 0;
+    const bHasPhoto = b.images.length > 0 ? 1 : 0;
+    if (aHasPhoto !== bHasPhoto) return bHasPhoto - aHasPhoto;
+
+    const aComplexity = (a.stars * 1000) + a.size;
+    const bComplexity = (b.stars * 1000) + b.size;
+    return bComplexity - aComplexity;
+  });
 
   return projects;
 }

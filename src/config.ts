@@ -10,7 +10,7 @@ export const siteConfig = {
     github: "https://github.com/huneyoliv",
   },
   aboutMe:
-    "Comecei a estudar programação há 5 anos, inicialmente como uma brincadeira, movido pela curiosidade de entender o que acontecia por trás das telas. Com o tempo, essa curiosidade se transformou em paixão e dedicação. Desde então, venho me especializando em desenvolvimento Back-End, com foco na criação de APIs robustas, na implementação de arquiteturas de microsserviços e na otimização de sistemas de alta performance. Atualmente, estou em processo de transição para a área de Ciência de Dados, unindo minha experiência em desenvolvimento à análise e interpretação de dados.",
+    "Comecei a estudar programação em 2019, inicialmente como uma brincadeira, movido pela curiosidade de entender o que acontecia por trás das telas. Com o tempo, essa curiosidade se transformou em paixão e dedicação. Desde então, venho me especializando em desenvolvimento Back-End, com foco na criação de APIs robustas, na implementação de arquiteturas de microsserviços e na otimização de sistemas de alta performance. Atualmente, estou em processo de transição para a área de Ciência de Dados, unindo minha experiência em desenvolvimento à análise e interpretação de dados.",
   skills: [
     "JavaScript",
     "TypeScript",
