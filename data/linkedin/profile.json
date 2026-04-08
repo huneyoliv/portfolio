@@ -1,12 +1,12 @@
 {
-  "lastUpdated": "2026-04-07T13:32:31.514Z",
+  "lastUpdated": "2026-04-08T07:09:32.073Z",
   "profile": {
     "name": "Huney Oliveira",
     "headline": "Desenvolvedor Back-End em transição | Node.js · Python · FastAPI",
     "summary": "Desenvolvedor back-end com experiência prática em Node.js, Python (FastAPI e Flask) e bancos de dados relacionais e não-relacionais (MySQL, MongoDB).\n\nAtuei no suporte técnico avançado de um produto SaaS (Vematize), mantendo automações back-end, diagnosticando falhas em integrações com gateways de pagamento e analisando logs em ambiente de produção.\n\nMinha base em manutenção de hardware — onde diagnostiquei e reparei mais de 100 equipamentos — me formou com raciocínio sistemático, atenção a detalhes e resiliência frente a problemas complexos: qualidades que aplico diretamente no desenvolvimento de software.\n\nAtualmente cursando Ciência da Computação na UFS e buscando minha primeira oportunidade como desenvolvedor back-end júnior. Disponível para remoto ou híbrido em Aracaju.\n\nTecnologias: Node.js · Python · FastAPI · Flask · MySQL · MongoDB · REST APIs · Webhooks · Git\n\nQuer trocar uma ideia? Me manda mensagem.",
     "location": "Aracaju, Sergipe, Brazil",
-    "profilePicture": "https://media.licdn.com/dms/image/v2/D4E03AQHz7z2dtoDk1g/profile-displayphoto-crop_800_800/B4EZkg_g5cGoAI-/0/1757195146682?e=1776902400&v=beta&t=PBgL2i0nLucW54f6B3CfPHFUZvGzNXY0T3wFO3o97qY",
-    "backgroundPicture": "https://media.licdn.com/dms/image/v2/D4E16AQGl7ogPdaK2lw/profile-displaybackgroundimage-shrink_350_1400/B4EZ06UCmKIkAY-/0/1774799827504?e=1776902400&v=beta&t=0GbLCS2TQ3UxRIx_VBZTqmCq5rn7hWZG6c1pzOnKXrs",
+    "profilePicture": "https://media.licdn.com/dms/image/v2/D4E03AQHz7z2dtoDk1g/profile-displayphoto-crop_800_800/B4EZkg_g5cGoAI-/0/1757195146682?e=1777507200&v=beta&t=1hq9JlegpAbRl_8LDtI3hIbRXX0moFOn3ANSB1F9hqU",
+    "backgroundPicture": "https://media.licdn.com/dms/image/v2/D4E16AQGl7ogPdaK2lw/profile-displaybackgroundimage-shrink_350_1400/B4EZ06UCmKIkAY-/0/1774799827504?e=1777507200&v=beta&t=C7bG0pWdDz_uvcsdtj3e_DRzjl3uf6YB65JZbHO4-og",
     "openToWork": true
   },
   "experience": [
@@ -41,7 +41,7 @@
       "startDate": "Mar 2026",
       "endDate": "Dec 2031",
       "duration": "Mar 2026 - Dec 2031",
-      "schoolLogo": "https://media.licdn.com/dms/image/v2/D4D0BAQE-me9zEHt3wg/company-logo_400_400/company-logo_400_400/0/1736425756970?e=1776902400&v=beta&t=UXzDd6-3hYKR9jP_zY-e8SCtmGaUySg8EJllw9PZdso"
+      "schoolLogo": "https://media.licdn.com/dms/image/v2/D4D0BAQE-me9zEHt3wg/company-logo_400_400/company-logo_400_400/0/1736425756970?e=1777507200&v=beta&t=3xXI-mm7vcnOcwEKJM-PxijpPE0WMjGht2wfQUlbhkU"
     },
     {
       "school": "Universidade Tiradentes-Unit",
@@ -50,7 +50,7 @@
       "startDate": "Jul 2025",
       "endDate": "Mar 2026",
       "duration": "Jul 2025 - Mar 2026",
-      "schoolLogo": "https://media.licdn.com/dms/image/v2/D4D0BAQG5jAGLVAfu1A/company-logo_400_400/company-logo_400_400/0/1666121349084/unit_br_logo?e=1776902400&v=beta&t=bcZa_LXcO0y_PaNeM5Si9RNkBAabHdMtk62xfB24Fzo"
+      "schoolLogo": "https://media.licdn.com/dms/image/v2/D4D0BAQG5jAGLVAfu1A/company-logo_400_400/company-logo_400_400/0/1666121349084/unit_br_logo?e=1777507200&v=beta&t=7Kp5XKkZklwzo_msDanM3WRI5WjV2eNV2NAZfQXkbGI"
     }
   ],
   "skills": [
@@ -117,7 +117,7 @@
   ],
   "languages": [
     {
-      "language": "Nederlands",
+      "language": "English",
       "proficiency": "Elementary proficiency"
     }
   ]
