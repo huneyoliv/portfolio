@@ -100,6 +100,7 @@ function transformData(raw) {
       authority: cert.issuedBy || cert.subtitle || cert.authority || cert.issuer || "",
       startDate: cert.issuedAt ? cert.issuedAt.replace("Issued ", "").replace("Emitido em ", "") : (cert.caption ? cert.caption.replace("Issued ", "").replace("Emitido em ", "") : formatDate(cert.startDate)),
       url: cert.url || cert.credential_url || cert.certificateId || "",
+      logo: cert.logo || cert.companyLogo?.url || cert.companyLogo || cert.authorityLogo || cert.image || "",
     })),
     languages: (info.languages || []).map((lang) => ({
       language: lang.name || lang.language || "",

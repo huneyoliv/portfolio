@@ -33,6 +33,7 @@ export interface LinkedInCertification {
   authority: string;
   startDate: string;
   url: string;
+  logo?: string;
 }
 
 export interface LinkedInData {
