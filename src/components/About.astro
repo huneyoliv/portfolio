@@ -45,25 +45,25 @@ const finalSkills = skillsList.length > 0 ? skillsList : displaySkills;
       </p>
 
       {finalSkills && finalSkills.length > 0 && (
-        <div class="mt-8 relative w-full overflow-hidden flex justify-center [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
-          <div class="flex w-max min-w-full animate-[scroll_20s_linear_infinite] hover:[animation-play-state:paused] group">
-            <div class="flex flex-1 gap-4 pr-4">
+        <div class="mt-8 relative w-full overflow-hidden flex justify-center py-6 [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+          <div class="flex w-max min-w-full animate-[scroll_20s_linear_infinite] hover:[animation-play-state:paused] group items-center">
+            <div class="flex flex-1 gap-6 pr-6">
               {finalSkills.map((skill) => (
                 <img
                    src={`https://skillicons.dev/icons?i=${skill}`}
                    alt={skill}
                    loading="lazy"
-                   class="h-12 w-12 min-w-12 max-w-12 hover:scale-150 hover:relative hover:z-10 transition-transform duration-300 cursor-pointer object-cover"
+                   class="h-12 w-12 min-w-12 max-w-12 hover:scale-150 relative transition-transform duration-300 cursor-pointer object-cover hover:z-50"
                 />
               ))}
             </div>
-            <div class="flex flex-1 gap-4 pr-4" aria-hidden="true">
+            <div class="flex flex-1 gap-6 pr-6" aria-hidden="true">
               {finalSkills.map((skill) => (
                 <img
                    src={`https://skillicons.dev/icons?i=${skill}`}
                    alt={skill}
                    loading="lazy"
-                   class="h-12 w-12 min-w-12 max-w-12 hover:scale-150 hover:relative hover:z-10 transition-transform duration-300 cursor-pointer object-cover"
+                   class="h-12 w-12 min-w-12 max-w-12 hover:scale-150 relative transition-transform duration-300 cursor-pointer object-cover hover:z-50"
                 />
               ))}
             </div>
