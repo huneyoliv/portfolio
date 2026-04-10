@@ -32,9 +32,9 @@ const { lang = "pt", certifications = [] } = Astro.props;
                 class="mt-1 w-10 h-10 rounded-lg flex items-center justify-center shrink-0 overflow-hidden bg-white shadow-sm border border-neutral-100 dark:border-neutral-800"
               >
                 <img 
-                  src={cert.logo && cert.logo.length > 5 ? cert.logo : `https://logo.clearbit.com/${cert.authority ? cert.authority.toLowerCase().replace(/[^a-z0-9]/g, '') : 'default'}.com`}
+                  src={cert.logo && cert.logo.length > 5 ? cert.logo : `https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${cert.authority ? cert.authority.toLowerCase().replace(/[^a-z0-9]/g, '') : 'default'}.com&size=128`}
                   alt={cert.authority || 'Certification'}
-                  class="w-full h-full object-cover"
+                  class="w-full h-full object-contain p-1"
                   onerror={`this.onerror=null;this.src='https://ui-avatars.com/api/?name=${cert.authority ? cert.authority.replace(/\\s+/g, '+') : 'C'}&background=random&color=fff';`}
                 />
               </div>
