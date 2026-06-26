@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Huney Oliveira",
-  title: "Desenvolvedor e Analista de Dados",
-  description: "Portfólio de Huney Oliveira - Desenvolvedor Back-End e Analista de Dados",
+  title: "Desenvolvedor",
+  description: "Portfólio de Huney Oliveira - Desenvolvedor FullStack e Mobile",
   accentColor: "#1d4ed8",
   social: {
     email: "contact@devhuney.me",
